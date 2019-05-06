@@ -113,6 +113,23 @@
       </widget>
      </item>
      <item>
+      <widget class="QLabel" name="label_5">
+       <property name="text">
+        <string>Segments</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QSpinBox" name="segments">
+       <property name="minimum">
+        <number>1</number>
+       </property>
+       <property name="value">
+        <number>3</number>
+       </property>
+      </widget>
+     </item>
+     <item>
       <widget class="QLabel" name="label_2">
        <property name="text">
         <string>Sides</string>
@@ -156,6 +173,7 @@
     <slot>setWireframe(bool)</slot>
     <slot>changeRootRadius(int)</slot>
     <slot>changeTipRadius(int)</slot>
+    <slot>changeNumberControlPoints(int)</slot>
    </slots>
   </customwidget>
  </customwidgets>
@@ -233,6 +251,22 @@
    <hints>
     <hint type="sourcelabel">
      <x>392</x>
+     <y>683</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>401</x>
+     <y>331</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>segments</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>viewer</receiver>
+   <slot>changeNumberControlPoints(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>551</x>
      <y>683</y>
     </hint>
     <hint type="destinationlabel">

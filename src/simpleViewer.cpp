@@ -115,6 +115,8 @@ void Viewer::draw() {
         glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);   
     else
         glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+
+    drawAxis();
   
     glDrawArrays(GL_POINTS, 0, numPoints);      
 
@@ -312,6 +314,13 @@ void Viewer::changeTipRadius(int value)
 void Viewer::changeSides(int value)
 {
     numSides = value;
+    
+    update();
+}
+
+void Viewer::changeNumberControlPoints(int value)
+{
+    numControlPoints = value;
     
     update();
 }

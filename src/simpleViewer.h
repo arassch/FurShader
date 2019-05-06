@@ -45,5 +45,7 @@ public Q_SLOTS:
 
     void changeSides(int value);
 
+    void changeNumberControlPoints(int value);
+
     void setWireframe(bool value);
 };
