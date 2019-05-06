@@ -44,6 +44,7 @@ GLint numControlPoints = 3;
 float rootRadius = 0.2f;
 float tipRadius = 0.2f;
 
+float angle = M_PI/8;
 
 const int numPoints = 2;
 const GLfloat segments[numPoints][4] = {
@@ -108,16 +109,17 @@ void Viewer::draw() {
 
     GLuint tipRadiusLocation = glGetUniformLocation(shaderProgram, "tipRadius");
     glUniform1fv(tipRadiusLocation, 1, &tipRadius);
+                
+    GLuint angleLocation = glGetUniformLocation(shaderProgram, "angle");
+    glUniform1fv(angleLocation, 1, &angle);
 
     glPointSize(10);  
-
+        
     if(wireframe)    
         glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);   
     else
         glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 
-    drawAxis();
-  
     glDrawArrays(GL_POINTS, 0, numPoints);      
 
 	glutSwapBuffers();                
@@ -321,6 +323,13 @@ void Viewer::changeSides(int value)
 void Viewer::changeNumberControlPoints(int value)
 {
     numControlPoints = value;
+    
+    update();
+}
+
+void Viewer::changeAngle(int value)
+{
+    angle = value * M_PI_2 / 100.f;
     
     update();
 }

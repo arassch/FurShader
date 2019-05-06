@@ -28,21 +28,48 @@
     </widget>
    </item>
    <item>
-    <layout class="QHBoxLayout">
-     <item>
-      <widget class="QCheckBox" name="checkBox">
-       <property name="enabled">
-        <bool>true</bool>
+    <layout class="QGridLayout" name="gridLayout">
+     <item row="0" column="5">
+      <widget class="QSlider" name="tipRadius">
+       <property name="value">
+        <number>50</number>
        </property>
-       <property name="layoutDirection">
-        <enum>Qt::RightToLeft</enum>
-       </property>
-       <property name="text">
-        <string>Wireframe</string>
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
        </property>
       </widget>
      </item>
-     <item>
+     <item row="0" column="14">
+      <spacer>
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>141</width>
+         <height>31</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item row="0" column="3">
+      <widget class="QSlider" name="rootRadius">
+       <property name="value">
+        <number>50</number>
+       </property>
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="2">
+      <widget class="QLabel" name="label_3">
+       <property name="text">
+        <string>Root Radius</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="1">
       <spacer name="horizontalSpacer">
        <property name="orientation">
         <enum>Qt::Horizontal</enum>
@@ -55,48 +82,34 @@
        </property>
       </spacer>
      </item>
-     <item>
-      <widget class="QLabel" name="label_3">
+     <item row="0" column="0">
+      <widget class="QCheckBox" name="checkBox">
+       <property name="enabled">
+        <bool>true</bool>
+       </property>
+       <property name="layoutDirection">
+        <enum>Qt::RightToLeft</enum>
+       </property>
        <property name="text">
-        <string>Root Radius</string>
+        <string>Wireframe</string>
        </property>
       </widget>
      </item>
-     <item>
-      <widget class="QSlider" name="rootRadius">
-       <property name="value">
-        <number>50</number>
-       </property>
-       <property name="orientation">
-        <enum>Qt::Horizontal</enum>
-       </property>
-      </widget>
-     </item>
-     <item>
+     <item row="0" column="4">
       <widget class="QLabel" name="label_4">
        <property name="text">
         <string>Tip Radius</string>
        </property>
       </widget>
      </item>
-     <item>
-      <widget class="QSlider" name="tipRadius">
-       <property name="value">
-        <number>50</number>
-       </property>
-       <property name="orientation">
-        <enum>Qt::Horizontal</enum>
-       </property>
-      </widget>
-     </item>
-     <item>
+     <item row="1" column="0">
       <widget class="QLabel" name="label">
        <property name="text">
         <string>Length</string>
        </property>
       </widget>
      </item>
-     <item>
+     <item row="1" column="1">
       <widget class="QSlider" name="length">
        <property name="maximumSize">
         <size>
@@ -112,14 +125,14 @@
        </property>
       </widget>
      </item>
-     <item>
+     <item row="1" column="2">
       <widget class="QLabel" name="label_5">
        <property name="text">
         <string>Segments</string>
        </property>
       </widget>
      </item>
-     <item>
+     <item row="1" column="3">
       <widget class="QSpinBox" name="segments">
        <property name="minimum">
         <number>1</number>
@@ -129,32 +142,33 @@
        </property>
       </widget>
      </item>
-     <item>
+     <item row="1" column="4">
       <widget class="QLabel" name="label_2">
        <property name="text">
         <string>Sides</string>
        </property>
       </widget>
      </item>
-     <item>
+     <item row="1" column="5">
       <widget class="QSpinBox" name="sides">
        <property name="minimum">
         <number>3</number>
        </property>
       </widget>
      </item>
-     <item>
-      <spacer>
+     <item row="1" column="6">
+      <widget class="QLabel" name="label_6">
+       <property name="text">
+        <string>Angle</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="7">
+      <widget class="QSlider" name="angle">
        <property name="orientation">
         <enum>Qt::Horizontal</enum>
        </property>
-       <property name="sizeHint" stdset="0">
-        <size>
-         <width>141</width>
-         <height>31</height>
-        </size>
-       </property>
-      </spacer>
+      </widget>
      </item>
     </layout>
    </item>
@@ -174,6 +188,7 @@
     <slot>changeRootRadius(int)</slot>
     <slot>changeTipRadius(int)</slot>
     <slot>changeNumberControlPoints(int)</slot>
+    <slot>changeAngle(int)</slot>
    </slots>
   </customwidget>
  </customwidgets>
@@ -272,6 +287,22 @@
     <hint type="destinationlabel">
      <x>401</x>
      <y>331</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>angle</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>viewer</receiver>
+   <slot>changeAngle(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>595</x>
+     <y>690</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>401</x>
+     <y>315</y>
     </hint>
    </hints>
   </connection>

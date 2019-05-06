@@ -11,6 +11,7 @@ uniform int numControlPoints;
 uniform int numSides;
 uniform float rootRadius;
 uniform float tipRadius;
+uniform float angle;
 
 
 // In
@@ -26,15 +27,32 @@ void main()
 {
     frag_ex_Color = ex_Color[0];
 
-    vec4 p = gl_in[0].gl_Position;
+    vec4 root = gl_in[0].gl_Position;
     
     if(numSides > 0 && numControlPoints > 0)
     {
         float ratio = 1.f/numControlPoints;
+
+        vec4 tangent = vec4(1, 0, 0, 0);
+        vec4 direction = vec4(0, 1, 0, 0);
+        vec4 binormal = vec4(0, 0, 1, 0);
+
+        mat4 segmentTransform;
+
+        segmentTransform[0] = vec4(cos(angle), -sin(angle), 0, 0); // first column.
+        segmentTransform[1] = vec4(sin(angle), cos(angle), 0, 0); // second column.
+        segmentTransform[2] = vec4(0, 0, 1, 0); // third column.
+        segmentTransform[3] = vec4(0, 0, 0, 1); // fourth column. Translation.
+        
+        vec4 previousPoint = root;
+
         for(int cp=0; cp<numControlPoints; ++cp)
         {
-            float segmentBegin = cp * ratio * ex_Length[0];
-            float segmentEnd = (cp+1) * ratio * ex_Length[0];
+            vec4 newTangent = segmentTransform * tangent;
+            vec4 newDirection = segmentTransform * direction;
+            vec4 newBinormal = segmentTransform * binormal;
+            
+            vec4 newPoint = previousPoint + newDirection * ratio*ex_Length[0];
 
             float segmentBeginRadius = rootRadius + (tipRadius - rootRadius) * cp * ratio;
             float segmentEndRadius = rootRadius + (tipRadius - rootRadius) * (cp+1) * ratio;
@@ -42,26 +60,33 @@ void main()
             {
                 float val = (2*M_PI*i)/numSides;
 
-                float xRoot = segmentBeginRadius * cos(val);
-                float zRoot = segmentBeginRadius * sin(val);
+                vec4 vertBegin = previousPoint + tangent * segmentBeginRadius * cos(val) + binormal * segmentBeginRadius * sin(val);
+                vec4 vertEnd = newPoint + newTangent * segmentEndRadius * cos(val) + newBinormal * segmentEndRadius * sin(val);
 
-                float xTip = segmentEndRadius * cos(val);
-                float zTip = segmentEndRadius * sin(val);
 
-                gl_Position = transform * (p + vec4(xRoot, segmentBegin, zRoot, 0));
+                gl_Position = transform * vertBegin;
                 EmitVertex();
 
-                gl_Position = transform * (p + vec4(xTip, segmentEnd, zTip, 0));
+                gl_Position = transform * vertEnd;
                 EmitVertex();
             }
 
-            gl_Position = transform * (p + vec4(segmentBeginRadius, segmentBegin, 0, 0));
+            vec4 vertBegin = previousPoint + tangent * segmentBeginRadius;
+            vec4 vertEnd = newPoint + newTangent * segmentEndRadius;
+
+            gl_Position = transform * vertBegin;
             EmitVertex();
 
-            gl_Position = transform * (p + vec4(segmentEndRadius, segmentEnd, 0, 0));
+            gl_Position = transform * vertEnd;
             EmitVertex();
 
             EndPrimitive();
+
+            previousPoint = newPoint;
+            
+            tangent = newTangent;
+            direction = newDirection;
+            binormal = newBinormal;
         }
     }
 }
