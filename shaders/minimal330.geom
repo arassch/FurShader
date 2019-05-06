@@ -11,7 +11,7 @@ uniform int numControlPoints;
 uniform int numSides;
 uniform float rootRadius;
 uniform float tipRadius;
-uniform float angle;
+uniform float curvature;
 
 
 // In
@@ -39,8 +39,8 @@ void main()
 
         mat4 segmentTransform;
 
-        segmentTransform[0] = vec4(cos(angle), -sin(angle), 0, 0); // first column.
-        segmentTransform[1] = vec4(sin(angle), cos(angle), 0, 0); // second column.
+        segmentTransform[0] = vec4(cos(curvature), -sin(curvature), 0, 0); // first column.
+        segmentTransform[1] = vec4(sin(curvature), cos(curvature), 0, 0); // second column.
         segmentTransform[2] = vec4(0, 0, 1, 0); // third column.
         segmentTransform[3] = vec4(0, 0, 0, 1); // fourth column. Translation.
         

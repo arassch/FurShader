@@ -44,7 +44,7 @@ GLint numControlPoints = 3;
 float rootRadius = 0.2f;
 float tipRadius = 0.2f;
 
-float angle = M_PI/8;
+float curvature = M_PI/8;
 
 const int numPoints = 2;
 const GLfloat segments[numPoints][4] = {
@@ -110,8 +110,8 @@ void Viewer::draw() {
     GLuint tipRadiusLocation = glGetUniformLocation(shaderProgram, "tipRadius");
     glUniform1fv(tipRadiusLocation, 1, &tipRadius);
                 
-    GLuint angleLocation = glGetUniformLocation(shaderProgram, "angle");
-    glUniform1fv(angleLocation, 1, &angle);
+    GLuint curvatureLocation = glGetUniformLocation(shaderProgram, "curvature");
+    glUniform1fv(curvatureLocation, 1, &curvature);
 
     glPointSize(10);  
         
@@ -327,9 +327,9 @@ void Viewer::changeNumberControlPoints(int value)
     update();
 }
 
-void Viewer::changeAngle(int value)
+void Viewer::changeCurvature(int value)
 {
-    angle = value * M_PI_2 / 100.f;
+    curvature = value * M_PI_2 / 100.f;
     
     update();
 }

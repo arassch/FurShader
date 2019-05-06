@@ -47,7 +47,7 @@ public Q_SLOTS:
 
     void changeNumberControlPoints(int value);
     
-    void changeAngle(int value);
+    void changeCurvature(int value);
 
     void setWireframe(bool value);
 };

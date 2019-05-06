@@ -159,12 +159,12 @@
      <item row="1" column="6">
       <widget class="QLabel" name="label_6">
        <property name="text">
-        <string>Angle</string>
+        <string>Curvature</string>
        </property>
       </widget>
      </item>
      <item row="1" column="7">
-      <widget class="QSlider" name="angle">
+      <widget class="QSlider" name="curvature">
        <property name="orientation">
         <enum>Qt::Horizontal</enum>
        </property>
@@ -188,7 +188,7 @@
     <slot>changeRootRadius(int)</slot>
     <slot>changeTipRadius(int)</slot>
     <slot>changeNumberControlPoints(int)</slot>
-    <slot>changeAngle(int)</slot>
+    <slot>changeCurvature(int)</slot>
    </slots>
   </customwidget>
  </customwidgets>
@@ -291,10 +291,10 @@
    </hints>
   </connection>
   <connection>
-   <sender>angle</sender>
+   <sender>curvature</sender>
    <signal>valueChanged(int)</signal>
    <receiver>viewer</receiver>
-   <slot>changeAngle(int)</slot>
+   <slot>changeCurvature(int)</slot>
    <hints>
     <hint type="sourcelabel">
      <x>595</x>
