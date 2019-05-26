@@ -32,6 +32,7 @@ int main(int argc, char **argv) {
   format.setProfile(QSurfaceFormat::CoreProfile);
   QSurfaceFormat::setDefaultFormat(format);
 
+  std::cout << "Hello" << std::endl;
 
   // Read command lines arguments.
   QApplication application(argc, argv); 
