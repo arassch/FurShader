@@ -15,7 +15,7 @@
 #include <string.h>
 
 
-char *textFileRead(char *fn) {
+char *textFileRead(const char *fn) {
 
 
 	FILE *fp;
@@ -43,7 +43,7 @@ char *textFileRead(char *fn) {
 	return content;
 }
 
-int textFileWrite(char *fn, char *s) {
+int textFileWrite(const char *fn, const char *s) {
 
 	FILE *fp;
 	int status = 0;

@@ -156,9 +156,9 @@ void Viewer::setShaders()
 	// fragmentScript = textFileRead("/Users/sarac.schvartzman/Dropbox/Code/FurShader/shaders/minimal120.frag");
     // geoScript = textFileRead("/Users/sarac.schvartzman/Dropbox/Code/FurShader/shaders/minimal120.geom");
 
-    vertexScript = textFileRead("/Users/sarac.schvartzman/Dropbox/Code/FurShader/shaders/minimal330.vert");
-	fragmentScript = textFileRead("/Users/sarac.schvartzman/Dropbox/Code/FurShader/shaders/minimal330.frag");
-    geoScript = textFileRead("/Users/sarac.schvartzman/Dropbox/Code/FurShader/shaders/minimal330.geom");
+    vertexScript = textFileRead("/Users/sarac.schvartzman/Dropbox/Code/FurShader/shaders/fur.vert");
+	fragmentScript = textFileRead("/Users/sarac.schvartzman/Dropbox/Code/FurShader/shaders/fur.frag");
+    geoScript = textFileRead("/Users/sarac.schvartzman/Dropbox/Code/FurShader/shaders/fur.geom");
 
 	glShaderSource(vertexShader, 1, &vertexScript, NULL);
 	glShaderSource(fragmentShader, 1, &fragmentScript, NULL);
